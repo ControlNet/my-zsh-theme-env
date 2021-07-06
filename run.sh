@@ -1,8 +1,16 @@
 #!/bin/bash
-
+ 
 # install dev tools
-sudo apt update
-sudo apt install -y gedit vim git curl wget zsh
+if [[ -f /etc/redhat-release ]]; then
+    sudo yum install -y gedit vim git curl wget zsh gcc make perl build-essential
+ 
+elif cat /etc/issue | grep -qiE "Mint|Ubuntu"; then
+    sudo apt update
+    sudo apt install -y gedit vim git curl wget zsh gcc make perl build-essential
+ 
+elif cat /etc/issue | grep -qiE "Manjaro"; then
+    sudo pacman -Sy gedit vim git curl wget zsh gcc make perl base-devel binutils yay
+fi
 
 # install oh-my-zsh
 curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > ~/install.sh
