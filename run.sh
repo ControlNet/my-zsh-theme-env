@@ -13,9 +13,7 @@ elif cat /etc/issue | grep -qiE "Manjaro"; then
 fi
 
 # install oh-my-zsh
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > ~/install.sh
-sh ~/install.sh --unattended
-rm ~/install.sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # change default shell
 chsh --shell $(which zsh) $(whoami)
