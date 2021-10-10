@@ -31,6 +31,9 @@ mv ~/temp.zshrc ~/.zshrc
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+# setup git history visualization
+git config --global alias.lsd "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+
 # hide conda prefix
 echo "changeps1: false" >> ~/.condarc
 
