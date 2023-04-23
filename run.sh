@@ -3,13 +3,17 @@
 # install dev tools
 if [[ -f /etc/redhat-release ]]; then
     sudo yum install -y gedit vim git curl wget zsh gcc make perl build-essential
+    curl -sL https://rpm.nodesource.com/setup_18.x | sudo bash -
+    sudo yum install -y nodejs
  
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu"; then
     sudo apt update
-    sudo apt install -y gedit vim git curl wget zsh gcc make perl build-essential
+    sudo apt install -y gedit vim git curl wget zsh gcc make perl build-essential libfuse2 python3-pip
+    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
+    sudo apt-get install -y nodejs
  
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy gedit vim git curl wget zsh gcc make perl base-devel binutils yay
+    sudo pacman -Sy gedit vim git curl wget zsh gcc make perl base-devel binutils yay nodejs npm
 fi
 
 # install oh-my-zsh
@@ -23,7 +27,9 @@ curl -fsSL https://raw.githubusercontent.com/ControlNet/my-zsh-theme-env/main/fi
 
 # modify the .zshrc file to change the theme and add plugins
 cat ~/.zshrc | sed 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"mzz-ys\"\nZSH_DISABLE_COMPFIX=\"true\"/' \
-    | sed 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' > ~/temp.zshrc
+    | sed 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' \
+    | sed 's/# export PATH=$HOME\/bin:\/usr\/local\/bin:$PATH/export PATH=$HOME\/.cargo\/bin:$HOME\/.local\/bin:$HOME\/bin:\/usr\/local\/bin:$PATH/' \
+    > ~/temp.zshrc
 
 mv ~/temp.zshrc ~/.zshrc
 
@@ -37,6 +43,25 @@ git config --global alias.lsd "log --graph --decorate --pretty=oneline --abbrev-
 # hide conda prefix
 echo "changeps1: false" >> ~/.condarc
 
+# setup cargo
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+# setup eazygit
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit /usr/local/bin
+rm lazygit.tar.gz lazygit
+
+# setup neovim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+sudo install nvim.appimage /usr/local/bin
+sudo ln -s /usr/local/bin/nvim.appimage /usr/local/bin/nvim
+rm nvim.appimage
+
 # change to zsh and apply theme
 zsh
 source ~/.zshrc
+
+# setup LunarVim
+LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) -y
