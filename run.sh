@@ -9,8 +9,7 @@ if [[ -f /etc/redhat-release ]]; then
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu"; then
     sudo apt update
     sudo apt install -y gedit vim git curl wget zsh gcc make perl build-essential libfuse2 python3-pip
-    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
-    sudo apt-get install -y nodejs
+    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs
  
 elif cat /etc/issue | grep -qiE "Manjaro"; then
     sudo pacman -Sy gedit vim git curl wget zsh gcc make perl base-devel binutils yay nodejs npm
@@ -30,6 +29,8 @@ cat ~/.zshrc | sed 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"mzz-ys\"\nZSH_DISAB
     | sed 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' \
     | sed 's/# export PATH=$HOME\/bin:\/usr\/local\/bin:$PATH/export PATH=$HOME\/.cargo\/bin:$HOME\/.local\/bin:$HOME\/bin:\/usr\/local\/bin:$PATH/' \
     > ~/temp.zshrc
+
+echo "alias vim=lvim" >> ~/temp.zshrc
 
 mv ~/temp.zshrc ~/.zshrc
 
