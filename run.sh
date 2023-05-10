@@ -47,7 +47,7 @@ echo "changeps1: false" >> ~/.condarc
 # setup cargo
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 
-# setup eazygit
+# setup lazygit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
