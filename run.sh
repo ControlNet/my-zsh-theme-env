@@ -2,17 +2,17 @@
  
 # install dev tools
 if [[ -f /etc/redhat-release ]]; then
-    sudo yum install -y gedit vim git curl wget zsh gcc make perl build-essential
+    sudo yum install -y gedit vim git curl wget zsh gcc make perl build-essential screen fzf tmux
     curl -sL https://rpm.nodesource.com/setup_18.x | sudo bash -
     sudo yum install -y nodejs
  
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu"; then
     sudo apt update
-    sudo apt install -y gedit vim git curl wget zsh gcc make perl build-essential libfuse2 python3-pip
+    sudo apt install -y gedit vim git curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux
     curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs
  
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy gedit vim git curl wget zsh gcc make perl base-devel binutils yay nodejs npm
+    sudo pacman -Sy gedit vim git curl wget zsh gcc make perl base-devel binutils yay nodejs npm screen fzf tmux
 fi
 
 # install oh-my-zsh
@@ -40,6 +40,14 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 # setup git history visualization
 git config --global alias.lsd "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+
+# install miniconda
+curl -s -L -o miniconda_installer.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash miniconda_installer.sh -b
+rm miniconda_installer.sh
+
+# initialize conda
+~/miniconda3/bin/conda init zsh
 
 # hide conda prefix
 echo "changeps1: false" >> ~/.condarc
