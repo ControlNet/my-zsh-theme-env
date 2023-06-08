@@ -8,7 +8,7 @@ It supports the following distributions:
 
 ## How to use it
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ControlNet/my-zsh-theme-env/main/run.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ControlNet/my-zsh-theme-env/main/run.sh)"
 ```
 
 ### For docker
