@@ -2,7 +2,7 @@
  
 # install dev tools
 if [[ -f /etc/redhat-release ]]; then
-    sudo yum install -y gedit vim git curl wget zsh gcc make perl build-essential screen fzf tmux
+    sudo yum install -y gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen fzf tmux
     curl -sL https://rpm.nodesource.com/setup_18.x | sudo bash -
     sudo yum install -y nodejs
  
