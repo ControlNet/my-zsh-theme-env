@@ -8,11 +8,11 @@ if [[ -f /etc/redhat-release ]]; then
  
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu"; then
     sudo apt update
-    sudo apt install -y gedit vim git curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux
+    sudo apt install -y gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux
     curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs
  
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy gedit vim git curl wget zsh gcc make perl base-devel binutils yay nodejs npm screen fzf tmux
+    sudo pacman -Sy gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils yay nodejs npm screen fzf tmux
 fi
 
 # install oh-my-zsh
