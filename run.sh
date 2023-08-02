@@ -30,8 +30,6 @@ cat ~/.zshrc | sed 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"mzz-ys\"\nZSH_DISAB
     | sed 's/# export PATH=$HOME\/bin:\/usr\/local\/bin:$PATH/export PATH=$HOME\/.cargo\/bin:$HOME\/.local\/bin:$HOME\/bin:\/usr\/local\/bin:$PATH/' \
     > ~/temp.zshrc
 
-echo "alias vim=lvim" >> ~/temp.zshrc
-
 mv ~/temp.zshrc ~/.zshrc
 
 # install other plugins
