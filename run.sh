@@ -32,6 +32,9 @@ cat ~/.zshrc | sed 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"mzz-ys\"\nZSH_DISAB
 
 mv ~/temp.zshrc ~/.zshrc
 
+# Disable oh-my-zsh auto update notification
+echo "DISABLE_UPDATE_PROMPT=true" >> ~/.zshrc
+
 # install other plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
