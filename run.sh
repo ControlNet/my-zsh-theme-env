@@ -75,3 +75,7 @@ source ~/.zshrc
 
 # setup LunarVim
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) -y
+
+# use faster libmamba solver for conda
+conda install -n base -y conda-libmamba-solver
+conda config --set solver libmamba
