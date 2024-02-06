@@ -13,6 +13,8 @@ What tools will be installed:
 - Frequently used languages and package managers (python with conda, nodejs, rust, golang, ...)
 - Modern linux terminal tools (exa, bat, fd, ripgrep, lazygit, lunarvim, ...) with alias
 
+![theme](assets/theme_preview.jpg)
+
 ## How to use it
 ```shell
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ControlNet/my-zsh-theme-env/main/run.sh)"
