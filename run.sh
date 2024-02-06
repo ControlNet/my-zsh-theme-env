@@ -2,7 +2,7 @@
  
 # install dev tools
 if [[ -f /etc/redhat-release ]]; then
-    sudo yum install -y gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen fzf tmux ncdu
+    sudo yum install -y gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen fzf tmux ncdu xsel neofetch
     mkdir -p ~/.local/bin
 
     # install pipx
@@ -18,10 +18,18 @@ if [[ -f /etc/redhat-release ]]; then
     # install nodejs
     curl -sL https://rpm.nodesource.com/setup_18.x | sudo bash -
     sudo yum install -y nodejs
+
+    # install ctop
+    sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
+    sudo chmod +x /usr/local/bin/ctop
+
+    # install neofetch
+    sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
+    sudo yum install -y neofetch
  
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu"; then
     sudo apt update
-    sudo apt install -y gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx
+    sudo apt install -y gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch
 
     # create a symlink for batcat to bat
     mkdir -p ~/.local/bin
@@ -29,9 +37,13 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu"; then
 
     # install nodejs
     curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs
+
+    # install ctop
+    sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
+    sudo chmod +x /usr/local/bin/ctop
  
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils yay nodejs npm screen fzf tmux ncdu bat python-pipx
+    sudo pacman -Sy gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils yay nodejs npm screen fzf tmux ncdu bat python-pipx xsel ctop neofetch
 fi
 
 # install oh-my-zsh
@@ -103,10 +115,30 @@ source ~/.zshrc
 
 # setup LunarVim
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) -y
+~/miniconda3/bin/python -m pip install neovim
 
 # use faster libmamba solver for conda
 ~/miniconda3/bin/conda install -n base -y conda-libmamba-solver
 ~/miniconda3/bin/conda config --set solver libmamba
+
+# install Meslo font
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+mkdir -p .local/share/fonts
+unzip Meslo.zip -d .local/share/fonts
+cd .local/share/fonts
+rm *Windows*
+cd ~
+rm Meslo.zip
+fc-cache -fv
+
+# install docker
+sh -c "$(curl -fsSL https://get.docker.com)"
+
+# setup lazydocker
+go install github.com/jesseduffield/lazydocker@latest
+
+# install lemonade for neovim/lunarvim clipboard for SSH
+go install github.com/lemonade-command/lemonade@latest
 
 # install lsd with alias to ls
 cargo install lsd
@@ -131,12 +163,6 @@ echo "alias find='fd'" >> ~/.zshrc
 cargo install ripgrep
 echo "alias grep='rg'" >> ~/.zshrc
 
-# install bottom
-cargo install bottom
-
-# install nvitop
-pipx install nvitop
-
 # install gping as the alias to ping
 cargo install gping
 echo "alias ping='gping'" >> ~/.zshrc
@@ -145,8 +171,30 @@ echo "alias ping='gping'" >> ~/.zshrc
 cargo install procs
 echo "alias ps='procs'" >> ~/.zshrc
 
-# install xh
+# install xh (http client)
 cargo install xh
+
+# install micro (better nano)
+curl https://getmic.ro | bash
+sudo mv micro /usr/bin
+echo "alias nano='micro'" >> ~/.zshrc
+
+# install scc (code counter)
+go install github.com/boyter/scc/v3@latest
+
+# Monitoring tools
+# install bandwhich (bandwidth monitoring)
+cargo install bandwhich
+sudo install $HOME/.cargo/bin/bandwhich /usr/local/bin
+
+# install bottom (system monitoring)
+cargo install bottom
+
+# install nvitop (nvidia gpu monitoring)
+pipx install nvitop
+
+# install bpytop (better htop)
+pipx install bpytop
 
 # change to zsh and apply theme
 zsh
