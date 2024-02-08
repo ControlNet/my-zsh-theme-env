@@ -44,6 +44,9 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu"; then
  
 elif cat /etc/issue | grep -qiE "Manjaro"; then
     sudo pacman -Sy gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils yay nodejs npm screen fzf tmux ncdu bat python-pipx xsel ctop neofetch
+else
+    echo "Not implemented for the current distro."
+    exit
 fi
 
 # install oh-my-zsh
@@ -133,6 +136,8 @@ fc-cache -fv
 
 # install docker
 sh -c "$(curl -fsSL https://get.docker.com)"
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
 # setup lazydocker
 go install github.com/jesseduffield/lazydocker@latest
@@ -181,6 +186,10 @@ echo "alias nano='micro'" >> ~/.zshrc
 
 # install scc (code counter)
 go install github.com/boyter/scc/v3@latest
+
+# install pm2
+npm config set prefix '~/.local/'
+npm install -g pm2
 
 # Monitoring tools
 # install bandwhich (bandwidth monitoring)
