@@ -27,7 +27,7 @@ if [[ -f /etc/redhat-release ]]; then
     sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
     sudo yum install -y neofetch
  
-elif cat /etc/issue | grep -qiE "Mint|Ubuntu"; then
+elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     sudo apt update
     sudo apt install -y gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch
 
