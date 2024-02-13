@@ -124,6 +124,9 @@ LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.
 ~/miniconda3/bin/conda install -n base -y conda-libmamba-solver
 ~/miniconda3/bin/conda config --set solver libmamba
 
+# set tmux color
+echo "set -g default-terminal \"screen-256color\"" >> ~/.tmux.conf
+
 # install Meslo font
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 mkdir -p .local/share/fonts
