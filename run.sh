@@ -191,6 +191,9 @@ go install github.com/boyter/scc/v3@latest
 npm config set prefix '~/.local/'
 npm install -g pm2
 
+# install viu (image viewer)
+cargo install viu
+
 # Monitoring tools
 # install bandwhich (bandwidth monitoring)
 cargo install bandwhich
