@@ -148,6 +148,9 @@ go install github.com/jesseduffield/lazydocker@latest
 # install lemonade for neovim/lunarvim clipboard for SSH
 go install github.com/lemonade-command/lemonade@latest
 
+# install zerotier
+curl -s https://install.zerotier.com | sudo bash
+
 # install lsd with alias to ls
 cargo install lsd
 echo "alias ls='lsd'" >> ~/.zshrc
