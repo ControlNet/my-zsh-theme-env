@@ -213,6 +213,7 @@ pipx install nvitop
 
 # install bpytop (better htop)
 pipx install bpytop
+echo "alias top='bpytop'" >> ~/.zshrc
 
 # change to zsh and apply theme
 zsh
