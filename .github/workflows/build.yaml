@@ -1,0 +1,41 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Clean files
+      run: |
+        rm -R assets
+        rm -R .github
+        rm -R files
+        mv run.sh index.html
+
+    - name: Init git and commit
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$GITHUB_TOKEN" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        git config --global user.email "smczx@hotmail.com"
+        git config --global user.name "ControlNet"
+        rm -rf .git
+        git init
+        git add -A
+        git commit -m "update"
+        git remote add origin-ssh git@github.com:ControlNet/my-zsh-theme-env.git
+
+    - name: Push
+      run: |
+        git push origin-ssh HEAD:web -f

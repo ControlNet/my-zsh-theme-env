@@ -43,7 +43,17 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     sudo chmod +x /usr/local/bin/ctop
  
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils yay nodejs npm screen fzf tmux ncdu bat python-pipx xsel ctop neofetch
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils nodejs npm screen fzf tmux ncdu bat python-pipx xsel ctop neofetch yay
+
+elif cat /etc/issue | grep -qiE "Arch"; then
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils nodejs npm screen fzf tmux ncdu bat python-pipx xsel ctop neofetch
+    # install yay
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    rm -rf yay
+
 else
     echo "Not implemented for the current distro."
     exit
@@ -184,6 +194,9 @@ echo "alias ps='procs'" >> ~/.zshrc
 
 # install xh (http client)
 cargo install xh
+
+# install speedtest-cli (internet speed test)
+pipx install speedtest-cli
 
 # install micro (better nano)
 curl https://getmic.ro | bash
