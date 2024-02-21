@@ -17,7 +17,7 @@ What tools will be installed:
 
 ## How to use it
 ```shell
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/ControlNet/my-zsh-theme-env/main/run.sh)"
+curl -fsSL https://boot.controlnet.space/ | bash
 ```
 
 ### For docker
