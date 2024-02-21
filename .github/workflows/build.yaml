@@ -22,10 +22,10 @@ jobs:
 
     - name: Init git and commit
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DEPLOY_PRIVATE: ${{ secrets.DEPLOY_PRIVATE }}
       run: |
         mkdir -p ~/.ssh/
-        echo "$GITHUB_TOKEN" > ~/.ssh/id_rsa
+        echo "$DEPLOY_PRIVATE" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         git config --global user.email "smczx@hotmail.com"
@@ -38,4 +38,4 @@ jobs:
 
     - name: Push
       run: |
-        git push origin-ssh HEAD:web -f
+        git push origin-ssh HEAD:dist -f
