@@ -1,0 +1,27 @@
+name: test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+        
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu, centos, manjaro, arch]
+    name: ${{ matrix.os }} test
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Build docker image
+        run: docker build -f .github/integration-test/Dockerfile-${{ matrix.os }} -t test_os .
+      
+      - name: Run docker container
+        run: docker run --rm test_os

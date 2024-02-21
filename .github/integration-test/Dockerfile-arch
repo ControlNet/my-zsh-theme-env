@@ -1,0 +1,24 @@
+# The Dockerfile to build centos with a sudo user
+FROM archlinux:latest
+
+# Install the required packages
+RUN pacman -Sy --noconfirm sudo
+
+# Create a new user
+RUN useradd -m -s /bin/bash user && \
+    usermod -aG wheel user && \
+    echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# Set the working directory
+WORKDIR /home/user
+COPY run.sh /home/user/run.sh
+
+# remove the last `zsh` in the script to prevent the endless runtime
+RUN echo "" >> ./run.sh
+RUN tac run.sh | awk '/^zsh$/ && !found { found = 1; next } 1' | tac > run.sh.tmp && mv run.sh.tmp run.sh
+
+# Set the user
+USER user
+
+# Set the entrypoint
+CMD bash run.sh

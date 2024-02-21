@@ -2,7 +2,7 @@
  
 # install dev tools
 if [[ -f /etc/redhat-release ]]; then
-    sudo yum install -y gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen fzf tmux ncdu xsel neofetch
+    sudo yum install -y python3 dnf gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen fzf tmux ncdu xsel neofetch unzip
     mkdir -p ~/.local/bin
 
     # install pipx
@@ -17,7 +17,8 @@ if [[ -f /etc/redhat-release ]]; then
 
     # install nodejs
     curl -sL https://rpm.nodesource.com/setup_18.x | sudo bash -
-    sudo yum install -y nodejs
+    curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+    sudo dnf install -y nodejs yarn
 
     # install ctop
     sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
@@ -29,7 +30,7 @@ if [[ -f /etc/redhat-release ]]; then
  
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     sudo apt update
-    sudo apt install -y net-tools make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch
+    sudo apt install -y net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch p7zip-full unzip
 
     # create a symlink for batcat to bat
     mkdir -p ~/.local/bin
@@ -43,14 +44,14 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     sudo chmod +x /usr/local/bin/ctop
  
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils nodejs npm screen fzf tmux ncdu bat python-pipx xsel ctop neofetch yay
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils nodejs npm screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip yay
 
 elif cat /etc/issue | grep -qiE "Arch"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils nodejs npm screen fzf tmux ncdu bat python-pipx xsel ctop neofetch
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils nodejs npm screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip
     # install yay
     git clone https://aur.archlinux.org/yay.git
     cd yay
-    makepkg -si
+    makepkg -si --noconfirm
     cd ..
     rm -rf yay
 
@@ -63,7 +64,7 @@ fi
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # change default shell
-chsh --shell $(which zsh) $(whoami)
+sudo chsh --shell $(which zsh) $(whoami)
 
 # download theme
 curl -fsSL https://raw.githubusercontent.com/ControlNet/my-zsh-theme-env/main/files/mzz-ys.zsh-theme > ~/.oh-my-zsh/themes/mzz-ys.zsh-theme
