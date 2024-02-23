@@ -199,6 +199,11 @@ cargo install xh
 # install speedtest-cli (internet speed test)
 pipx install speedtest-cli
 
+# install zoxide (better cd)
+curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
+echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
+
 # install micro (better nano)
 curl https://getmic.ro | bash
 sudo mv micro /usr/bin
