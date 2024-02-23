@@ -199,6 +199,9 @@ cargo install xh
 # install speedtest-cli (internet speed test)
 pipx install speedtest-cli
 
+# install gdown (google drive downloader)
+pipx install gdown
+
 # install zoxide (better cd)
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
