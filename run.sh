@@ -60,6 +60,9 @@ else
     exit
 fi
 
+# set tmux color
+echo "set -g default-terminal \"screen-256color\"" >> ~/.tmux.conf
+
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
