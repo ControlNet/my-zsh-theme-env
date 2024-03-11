@@ -81,7 +81,7 @@ cat ~/.zshrc | sed 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"mzz-ys\"\nZSH_DISAB
 mv ~/temp.zshrc ~/.zshrc
 
 # Disable oh-my-zsh auto update notification
-echo "DISABLE_UPDATE_PROMPT=true" >> ~/.zshrc
+echo "export DISABLE_UPDATE_PROMPT=true" >> ~/.zshrc
 
 # install other plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -111,13 +111,13 @@ wget -q -O - https://git.io/vQhTU | bash
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
-sudo install lazygit /usr/local/bin
+install lazygit ~/.local/bin
 rm lazygit.tar.gz lazygit
 
 # setup neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-sudo install nvim.appimage /usr/local/bin
-sudo ln -s /usr/local/bin/nvim.appimage /usr/local/bin/nvim
+install nvim.appimage ~/.local/bin
+ln -s ~/.local/bin/nvim.appimage ~/.local/bin/nvim
 rm nvim.appimage
 
 # setup GoLang environment variables (which is only set for bash in previous)
@@ -199,6 +199,9 @@ echo "alias ps='procs'" >> ~/.zshrc
 # install xh (http client)
 cargo install xh
 
+# install uv (faster pip)
+pipx install uv
+
 # install speedtest-cli (internet speed test)
 pipx install speedtest-cli
 
@@ -218,17 +221,14 @@ echo "alias nano='micro'" >> ~/.zshrc
 # install scc (code counter)
 go install github.com/boyter/scc/v3@latest
 
+# install viu (image viewer)
+cargo install viu
+
 # install pm2
 npm config set prefix '~/.local/'
 npm install -g pm2
 
-# install viu (image viewer)
-cargo install viu
-
 # Monitoring tools
-# install bandwhich (bandwidth monitoring)
-cargo install bandwhich
-sudo install $HOME/.cargo/bin/bandwhich /usr/local/bin
 
 # install bottom (system monitoring)
 cargo install bottom
@@ -240,8 +240,9 @@ pipx install nvitop
 pipx install bpytop
 echo "alias top='bpytop'" >> ~/.zshrc
 
-# install uv (faster pip)
-pipx install uv
+# install bandwhich (bandwidth monitoring)
+cargo install bandwhich
+sudo install $HOME/.cargo/bin/bandwhich /usr/local/bin
 
 # change to zsh and apply theme
 zsh
