@@ -240,5 +240,9 @@ pipx install nvitop
 pipx install bpytop
 echo "alias top='bpytop'" >> ~/.zshrc
 
+# install uv (faster pip)
+pipx install uv
+echo "alias pip='uv pip'" >> ~/.zshrc
+
 # change to zsh and apply theme
 zsh
