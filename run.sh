@@ -212,7 +212,7 @@ echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
 
 # install micro (better nano)
 curl https://getmic.ro | bash
-sudo mv micro /usr/bin
+mv micro ~/.local/bin
 echo "alias nano='micro'" >> ~/.zshrc
 
 # install scc (code counter)
@@ -242,7 +242,6 @@ echo "alias top='bpytop'" >> ~/.zshrc
 
 # install uv (faster pip)
 pipx install uv
-echo "alias pip='uv pip'" >> ~/.zshrc
 
 # change to zsh and apply theme
 zsh
