@@ -90,6 +90,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # setup git history visualization
 git config --global alias.lsd "log --graph --decorate --pretty=oneline --abbrev-commit --all"
 
+# setup git credential
+git config --global credential.helper store
+
 # install miniconda
 curl -s -L -o miniconda_installer.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash miniconda_installer.sh -b
