@@ -17,7 +17,8 @@ What tools will be installed:
 
 ## How to use it
 ```shell
-curl -fsSL https://boot.controlnet.space/ | bash
+curl -fsSL https://boot.controlnet.space/ | bash  # if you have sudo permission
+curl -fsSL https://boot.controlnet.space/user | bash  # if you don't have sudo permission
 ```
 
 ### For docker

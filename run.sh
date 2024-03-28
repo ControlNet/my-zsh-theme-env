@@ -25,7 +25,7 @@ if [[ -f /etc/redhat-release ]]; then
  
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     sudo apt update
-    sudo apt install -y net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch p7zip-full unzip
+    sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch p7zip-full unzip
 
     # create a symlink for batcat to bat
     mkdir -p ~/.local/bin
