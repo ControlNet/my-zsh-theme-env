@@ -12,7 +12,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, centos, manjaro, arch]
-    name: ${{ matrix.os }} test
+        mode: [sudo, user]
+    name: ${{ matrix.os }} ${{ matrix.mode }} test
     
     steps:
       - name: Checkout
@@ -21,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: Build docker image
-        run: docker build -f .github/integration-test/Dockerfile-${{ matrix.os }} -t test_os .
+        run: docker build -f .github/integration-test/Dockerfile-${{ matrix.os }}-${{ matrix.mode }} -t test_os .
       
       - name: Run docker container
         run: docker run --rm test_os

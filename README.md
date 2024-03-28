@@ -43,3 +43,32 @@ RUN git config --global alias.lsd "log --graph --decorate --pretty=oneline --abb
 # hide conda prefix
 RUN echo "changeps1: false" >> /root/.condarc
 ```
+
+### Detail Steps
+
+1. Checks the Linux distribution and installs a set of common development tools using the appropriate package manager.
+2. Installs pipx, a tool for installing and running Python applications in isolated environments.
+3. Downloads and installs bat, a cat clone with syntax highlighting and Git integration.
+4. Installs Node.js using nvm (Node Version Manager).
+5. Downloads and installs ctop, a top-like interface for container metrics.
+6. Installs neofetch, a command-line system information tool.
+7. Sets up tmux with a specific color scheme.
+8. Installs oh-my-zsh, a framework for managing Zsh configuration.
+9. Changes the default shell to Zsh.
+10. Downloads a specific Zsh theme and modifies the .zshrc file to use this theme and add plugins.
+11. Disables oh-my-zsh auto-update notifications.
+12. Installs additional Zsh plugins for autosuggestions and syntax highlighting.
+13. Sets up Git history visualization and credential storage.
+14. Installs Miniconda, a free minimal installer for conda.
+15. Sets up the Rust programming language and Go programming language environments.
+16. Installs lazygit, a simple terminal UI for git commands.
+17. Installs neovim, a highly configurable text editor.
+18. Sets up LunarVim, a distribution of Neovim.
+19. Installs a faster solver for conda.
+20. Installs the Meslo font.
+21. Installs Docker and sets up the user to run Docker commands without sudo.
+22. Installs lazydocker, a simple terminal UI for Docker.
+23. Installs lemonade, a remote operation utility.
+24. Installs ZeroTier, a global P2P VPN.
+25. Installs several utilities (lsd, git-delta, duf, dust, fd, ripgrep, gping, procs, xh, uv, speedtest-cli, gdown, zoxide, micro, scc, viu, pm2) and sets up aliases for some of them.
+26. Installs several system monitoring tools (bottom, nvitop, bpytop, bandwhich).

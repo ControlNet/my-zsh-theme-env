@@ -1,59 +1,33 @@
 #!/bin/bash
  
 # install dev tools
-if [[ -f /etc/redhat-release ]]; then
-    sudo yum install -y python3 dnf gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen fzf tmux ncdu xsel unzip
-    mkdir -p ~/.local/bin
+mkdir -p ~/.local/bin
+# install pipx
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
 
-    # install pipx
-    python3 -m pip install --user pipx
-    python3 -m pipx ensurepath
+# install bat
+wget -O bat.zip https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-v0.7.1-x86_64-unknown-linux-musl.tar.gz
+tar -xvzf bat.zip -C ~/.local/bin
+cd ~/.local/bin && mv bat-v0.7.1-x86_64-unknown-linux-musl/bat . && rm -r bat-v0.7.1-x86_64-unknown-linux-musl
+cd ~ && rm bat.zip
 
-    # install bat
-    wget -O bat.zip https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-v0.7.1-x86_64-unknown-linux-musl.tar.gz
-    tar -xvzf bat.zip -C ~/.local/bin
-    cd ~/.local/bin && mv bat-v0.7.1-x86_64-unknown-linux-musl/bat . && rm -r bat-v0.7.1-x86_64-unknown-linux-musl
-    cd ~ && rm bat.zip
-
-    # install ctop
-    sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
-    sudo chmod +x /usr/local/bin/ctop
-
-    # install neofetch
-    sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
-    sudo yum install -y neofetch
- 
-elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
-    sudo apt update
-    sudo apt install -y net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch p7zip-full unzip
-
-    # create a symlink for batcat to bat
-    mkdir -p ~/.local/bin
-    ln -s /usr/bin/batcat ~/.local/bin/bat
-
-    # install ctop
-    sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
-    sudo chmod +x /usr/local/bin/ctop
- 
-elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip yay
-
-elif cat /etc/issue | grep -qiE "Arch"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip
-    # install yay
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si --noconfirm
-    cd ..
-    rm -rf yay
-
-else
-    echo "Not implemented for the current distro."
-    exit
-fi
-
-# install nvm for nodejs
+# install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# install neofetch
+git clone --depth 1 --branch "7.1.0" https://github.com/dylanaraps/neofetch ~/neofetch
+cd ~/neofetch && make PREFIX=~/.local install
+cd ~ && rm -rf ~/neofetch
+
+# install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# install ncdu
+wget https://dev.yorhel.nl/download/ncdu-2.3-linux-x86_64.tar.gz
+tar -xvzf ncdu-2.3-linux-x86_64.tar.gz -C ~/.local/bin
+rm ncdu-2.3-linux-x86_64.tar.gz
 
 # set tmux color
 echo "set -g default-terminal \"screen-256color\"" >> ~/.tmux.conf
@@ -62,7 +36,7 @@ echo "set -g default-terminal \"screen-256color\"" >> ~/.tmux.conf
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # change default shell
-sudo chsh --shell $(which zsh) $(whoami)
+chsh --shell $(which zsh) $(whoami)
 
 # download theme
 curl -fsSL https://raw.githubusercontent.com/ControlNet/my-zsh-theme-env/main/files/mzz-ys.zsh-theme > ~/.oh-my-zsh/themes/mzz-ys.zsh-theme
@@ -148,29 +122,11 @@ LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.
 ~/miniconda3/bin/conda install -n base -y conda-libmamba-solver
 ~/miniconda3/bin/conda config --set solver libmamba
 
-# install Meslo font
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-mkdir -p .local/share/fonts
-unzip Meslo.zip -d .local/share/fonts
-cd .local/share/fonts
-rm *Windows*
-cd ~
-rm Meslo.zip
-fc-cache -fv
-
-# install docker
-sh -c "$(curl -fsSL https://get.docker.com)"
-sudo groupadd docker
-sudo usermod -aG docker $USER
-
 # setup lazydocker
 go install github.com/jesseduffield/lazydocker@latest
 
 # install lemonade for neovim/lunarvim clipboard for SSH
 go install github.com/lemonade-command/lemonade@latest
-
-# install zerotier
-curl -s https://install.zerotier.com | sudo bash
 
 # install lsd with alias to ls
 cargo install lsd
@@ -246,10 +202,6 @@ pipx install nvitop
 # install bpytop (better htop)
 pipx install bpytop
 echo "alias top='bpytop'" >> ~/.zshrc
-
-# install bandwhich (bandwidth monitoring)
-cargo install bandwhich
-sudo install $HOME/.cargo/bin/bandwhich /usr/local/bin
 
 # change to zsh and apply theme
 zsh

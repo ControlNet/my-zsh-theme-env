@@ -1,0 +1,30 @@
+# The Dockerfile to build ubuntu with a sudo user
+FROM ubuntu:22.04
+
+# Set the environment variables
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install the required packages
+RUN apt update
+RUN apt install -y sudo
+RUN echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+RUN TZ=Etc/UTC apt install -o DPkg::Options::="--force-confnew" -y tzdata
+
+# Create a new user
+RUN useradd -m -s /bin/bash user && \
+    usermod -aG sudo user && \
+    echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# Set the working directory
+WORKDIR /home/user
+COPY run_user.sh /home/user/run_user.sh
+
+# remove the last `zsh` in the script to prevent the endless runtime
+RUN echo "" >> ./run_user.sh
+RUN tac run_user.sh | awk '/^zsh$/ && !found { found = 1; next } 1' | tac > run_user.sh.tmp && mv run_user.sh.tmp run_user.sh
+
+# Set the user
+USER user
+
+# Set the entrypoint
+CMD bash run_user.sh

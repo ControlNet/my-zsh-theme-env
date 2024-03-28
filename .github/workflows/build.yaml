@@ -20,6 +20,8 @@ jobs:
         rm -R .github
         rm -R files
         mv run.sh index.html
+        mkdir user
+        mv run_user.sh user/index.html
 
     - name: Init git and commit
       env:
