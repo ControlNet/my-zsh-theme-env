@@ -1,28 +1,36 @@
 #!/bin/bash
  
 # install dev tools
+# if fedora or centos
 if [[ -f /etc/redhat-release ]]; then
-    sudo yum install -y python3 dnf gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen fzf tmux ncdu xsel unzip
     mkdir -p ~/.local/bin
 
-    # install pipx
-    python3 -m pip install --user pipx
-    python3 -m pipx ensurepath
+    # if fedora
+    if cat /etc/redhat-release | grep -qiE "Fedora"; then
+        sudo dnf install -y python3 pipx gedit vim git git-lfs curl wget zsh gcc make perl screen fzf tmux ncdu xsel unzip bat neofetch
+    # if centos
+    else
+        sudo yum install -y python3 dnf gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen fzf tmux ncdu xsel unzip
+        # install pipx
+        python3 -m pip install --user pipx
+        python3 -m pipx ensurepath
 
-    # install bat
-    wget -O bat.zip https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-v0.7.1-x86_64-unknown-linux-musl.tar.gz
-    tar -xvzf bat.zip -C ~/.local/bin
-    cd ~/.local/bin && mv bat-v0.7.1-x86_64-unknown-linux-musl/bat . && rm -r bat-v0.7.1-x86_64-unknown-linux-musl
-    cd ~ && rm bat.zip
+        # install bat
+        wget -O bat.zip https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-v0.7.1-x86_64-unknown-linux-musl.tar.gz
+        tar -xvzf bat.zip -C ~/.local/bin
+        cd ~/.local/bin && mv bat-v0.7.1-x86_64-unknown-linux-musl/bat . && rm -r bat-v0.7.1-x86_64-unknown-linux-musl
+        cd ~ && rm bat.zip
+        
+        # install neofetch
+        sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
+        sudo yum install -y neofetch
+    fi
 
     # install ctop
     sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
     sudo chmod +x /usr/local/bin/ctop
 
-    # install neofetch
-    sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
-    sudo yum install -y neofetch
- 
+# if ubuntu or mint
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     sudo apt update
     sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch p7zip-full unzip
@@ -34,10 +42,12 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     # install ctop
     sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
     sudo chmod +x /usr/local/bin/ctop
- 
+
+# if manjaro
 elif cat /etc/issue | grep -qiE "Manjaro"; then
     sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip yay
 
+# if arch
 elif cat /etc/issue | grep -qiE "Arch"; then
     sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip
     # install yay

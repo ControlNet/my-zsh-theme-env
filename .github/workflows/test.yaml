@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu, centos, manjaro, arch]
+        os: [ubuntu, centos, fedora, manjaro, arch]
         mode: [sudo, user]
     name: ${{ matrix.os }} ${{ matrix.mode }} test
     
