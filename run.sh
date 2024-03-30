@@ -52,6 +52,9 @@ else
     exit
 fi
 
+# update pciids
+sudo update-pciids
+
 # install nvm for nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
