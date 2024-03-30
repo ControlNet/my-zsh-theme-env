@@ -57,6 +57,10 @@ elif cat /etc/issue | grep -qiE "Arch"; then
     cd ..
     rm -rf yay
 
+# if endeavour os
+elif cat /etc/issue | grep -qiE "EndeavourOS"; then
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip
+
 else
     echo "Not implemented for the current distro."
     exit
