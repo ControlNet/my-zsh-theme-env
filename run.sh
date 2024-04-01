@@ -1,9 +1,9 @@
 #!/bin/bash
  
 # install dev tools
+mkdir -p ~/.local/bin
 # if fedora or centos
 if [[ -f /etc/redhat-release ]]; then
-    mkdir -p ~/.local/bin
 
     # if fedora
     if cat /etc/redhat-release | grep -qiE "Fedora"; then
@@ -45,7 +45,6 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch p7zip-full unzip
 
     # create a symlink for batcat to bat
-    mkdir -p ~/.local/bin
     ln -s /usr/bin/batcat ~/.local/bin/bat
 
     # install ctop
@@ -62,7 +61,10 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
 
 # if manjaro
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip yay tigervnc
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip yay 
+
+    # install vncserver
+    sudo pacman -Sy --noconfirm tigervnc
 
     # install gitkraken
     yay -Sy --noconfirm gitkraken
@@ -82,7 +84,7 @@ elif cat /etc/issue | grep -qiE "Arch"; then
 
 # if endeavour os
 elif cat /etc/issue | grep -qiE "EndeavourOS"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip tigervnc
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip
 
     # install gitkraken
     yay -Sy --noconfirm gitkraken
