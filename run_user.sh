@@ -29,6 +29,13 @@ wget https://dev.yorhel.nl/download/ncdu-2.3-linux-x86_64.tar.gz
 tar -xvzf ncdu-2.3-linux-x86_64.tar.gz -C ~/.local/bin
 rm ncdu-2.3-linux-x86_64.tar.gz
 
+# install gitkraken
+wget https://release.gitkraken.com/linux/gitkraken-amd64.tar.gz
+tar -xvzf gitkraken-amd64.tar.gz
+mv gitkraken ~/.gitkraken
+rm gitkraken-amd64.tar.gz
+ln -s ~/.gitkraken/gitkraken ~/.local/bin/gitkraken
+
 # set tmux color
 echo "set -g default-terminal \"screen-256color\"" >> ~/.tmux.conf
 
@@ -83,7 +90,7 @@ wget -q -O - https://git.io/vQhTU | bash
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
-install lazygit ~/.local/bin
+install lazygit ~/.local/bin/lazygit
 rm lazygit.tar.gz lazygit
 
 # setup neovim
@@ -148,7 +155,7 @@ cargo install fd-find
 echo "alias find='fd'" >> ~/.zshrc
 
 # add riggrep as the alias to grep
-cargo install ripgrep
+cargo install --features "pcre2" ripgrep
 echo "alias grep='rg'" >> ~/.zshrc
 
 # install gping as the alias to ping

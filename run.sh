@@ -30,8 +30,17 @@ if [[ -f /etc/redhat-release ]]; then
     sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
     sudo chmod +x /usr/local/bin/ctop
 
+    # install vnc
+    sudo dnf install -y tigervnc-server
+
+    # install gitkraken
+    wget https://release.gitkraken.com/linux/gitkraken-amd64.rpm
+    sudo dnf install ./gitkraken-amd64.rpm
+    rm gitkraken-amd64.rpm
+
 # if ubuntu or mint
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
+    # update and install
     sudo apt update
     sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch p7zip-full unzip
 
@@ -43,13 +52,24 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
     sudo chmod +x /usr/local/bin/ctop
 
+    # install vnc
+    sudo apt install tigervnc-standalone-server tigervnc-common tigervnc-xorg-extension
+
+    # install gitkraken
+    wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
+    sudo apt install ./gitkraken-amd64.deb
+    rm gitkraken-amd64.deb
+
 # if manjaro
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip yay
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip yay tigervnc
+
+    # install gitkraken
+    yay -Sy --noconfirm gitkraken
 
 # if arch
 elif cat /etc/issue | grep -qiE "Arch"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip tigervnc
     # install yay
     git clone https://aur.archlinux.org/yay.git
     cd yay
@@ -57,9 +77,15 @@ elif cat /etc/issue | grep -qiE "Arch"; then
     cd ..
     rm -rf yay
 
+    # install gitkraken
+    yay -Sy --noconfirm gitkraken
+
 # if endeavour os
 elif cat /etc/issue | grep -qiE "EndeavourOS"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip tigervnc
+
+    # install gitkraken
+    yay -Sy --noconfirm gitkraken
 
 else
     echo "Not implemented for the current distro."
@@ -126,7 +152,7 @@ wget -q -O - https://git.io/vQhTU | bash
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
-install lazygit ~/.local/bin
+install lazygit ~/.local/bin/lazygit
 rm lazygit.tar.gz lazygit
 
 # setup neovim
@@ -209,7 +235,7 @@ cargo install fd-find
 echo "alias find='fd'" >> ~/.zshrc
 
 # add riggrep as the alias to grep
-cargo install ripgrep
+cargo install --features "pcre2" ripgrep
 echo "alias grep='rg'" >> ~/.zshrc
 
 # install gping as the alias to ping
