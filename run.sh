@@ -52,12 +52,28 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     sudo chmod +x /usr/local/bin/ctop
 
     # install vnc
-    sudo apt install tigervnc-standalone-server tigervnc-common tigervnc-xorg-extension
+    sudo apt install -y tigervnc-standalone-server tigervnc-common tigervnc-xorg-extension
 
     # install gitkraken
     wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
-    sudo apt install ./gitkraken-amd64.deb
+    sudo apt install -y ./gitkraken-amd64.deb
     rm gitkraken-amd64.deb
+
+# if openSUSE
+elif cat /etc/os-release | grep -qiE "openSUSE"; then
+    sudo zypper install -y python3 python3-pip gedit vim git git-lfs curl wget zsh gcc make perl screen fzf tmux ncdu bat xsel neofetch p7zip unzip
+
+    # install ctop
+    sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
+    sudo chmod +x /usr/local/bin/ctop
+
+    # install vnc
+    sudo zypper install -y tigervnc
+
+    # install gitkraken
+    wget https://release.gitkraken.com/linux/gitkraken-amd64.rpm
+    sudo zypper install --allow-unsigned-rpm -y ./gitkraken-amd64.rpm
+    rm gitkraken-amd64.rpm
 
 # if manjaro
 elif cat /etc/issue | grep -qiE "Manjaro"; then
