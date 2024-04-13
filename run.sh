@@ -7,7 +7,7 @@ if [[ -f /etc/redhat-release ]]; then
 
     # if fedora
     if cat /etc/redhat-release | grep -qiE "Fedora"; then
-        sudo dnf install -y python3 pipx gedit vim git git-lfs curl wget zsh gcc make perl screen fzf tmux ncdu xsel unzip bat neofetch
+        sudo dnf install -y python3 pipx gedit vim git git-lfs curl wget zsh gcc make perl screen fzf tmux ncdu xsel unzip bat screenfetch neofetch
     # if centos
     else
         sudo yum install -y python3 dnf gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen fzf tmux ncdu xsel unzip
@@ -42,7 +42,7 @@ if [[ -f /etc/redhat-release ]]; then
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     # update and install
     sudo apt update
-    sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel neofetch p7zip-full unzip
+    sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel screenfetch neofetch p7zip-full unzip
 
     # create a symlink for batcat to bat
     ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -61,7 +61,11 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
 
 # if openSUSE
 elif cat /etc/os-release | grep -qiE "openSUSE"; then
-    sudo zypper install -y python3 python3-pip gedit vim git git-lfs curl wget zsh gcc make perl screen fzf tmux ncdu bat xsel neofetch p7zip unzip
+    sudo zypper install -y python3 python3-pip gedit vim git git-lfs curl wget zsh gcc make perl screen fzf tmux ncdu bat xsel screenfetch neofetch p7zip unzip
+
+    # install pipx
+    python3 -m pip install --user pipx
+    python3 -m pipx ensurepath
 
     # install ctop
     sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64 -O /usr/local/bin/ctop
@@ -77,7 +81,7 @@ elif cat /etc/os-release | grep -qiE "openSUSE"; then
 
 # if manjaro
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip yay 
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop screenfetch neofetch p7zip unzip yay 
 
     # install vncserver
     sudo pacman -Sy --noconfirm tigervnc
@@ -87,7 +91,7 @@ elif cat /etc/issue | grep -qiE "Manjaro"; then
 
 # if arch
 elif cat /etc/issue | grep -qiE "Arch"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip tigervnc
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop screenfetch neofetch p7zip unzip tigervnc
     # install yay
     git clone https://aur.archlinux.org/yay.git
     cd yay
@@ -100,7 +104,7 @@ elif cat /etc/issue | grep -qiE "Arch"; then
 
 # if endeavour os
 elif cat /etc/issue | grep -qiE "EndeavourOS"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop neofetch p7zip unzip
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop screenfetch neofetch p7zip unzip
 
     # install gitkraken
     yay -Sy --noconfirm gitkraken
@@ -275,6 +279,9 @@ pipx install speedtest-cli
 
 # install gdown (google drive downloader)
 pipx install gdown
+
+# install archey4
+pipx install archey4
 
 # install zoxide (better cd)
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
