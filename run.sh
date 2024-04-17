@@ -42,7 +42,7 @@ if [[ -f /etc/redhat-release ]]; then
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     # update and install
     sudo apt update
-    sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel screenfetch neofetch fastfetch p7zip-full unzip
+    sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel screenfetch neofetch p7zip-full unzip
 
     # create a symlink for batcat to bat
     ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -58,6 +58,11 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
     sudo apt install -y ./gitkraken-amd64.deb
     rm gitkraken-amd64.deb
+
+    # install fastfetch
+    sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
+    sudo apt update
+    sudo apt install -y fastfetch
 
 # if openSUSE
 elif cat /etc/os-release | grep -qiE "openSUSE"; then
