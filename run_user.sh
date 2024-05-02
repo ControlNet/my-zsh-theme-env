@@ -178,6 +178,12 @@ pipx install speedtest-cli
 # install gdown (google drive downloader)
 pipx install gdown
 
+# install archey4
+pipx install archey4
+
+# install genact
+cargo install genact
+
 # install zoxide (better cd)
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
