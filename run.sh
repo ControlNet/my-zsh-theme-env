@@ -109,7 +109,7 @@ elif cat /etc/issue | grep -qiE "Arch"; then
 
 # if endeavour os
 elif cat /etc/issue | grep -qiE "EndeavourOS"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen fzf tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc
 
     # install gitkraken
     yay -Sy --noconfirm gitkraken
@@ -145,8 +145,8 @@ cat ~/.zshrc | sed 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"mzz-ys\"\nZSH_DISAB
 
 mv ~/temp.zshrc ~/.zshrc
 
-# Disable oh-my-zsh auto update notification
-echo "export DISABLE_UPDATE_PROMPT=true" >> ~/.zshrc
+# Disable oh-my-zsh auto update notification, at the begining of ~/.zshrc
+echo "export DISABLE_UPDATE_PROMPT=true" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 
 # install other plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
