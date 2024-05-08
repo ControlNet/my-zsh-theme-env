@@ -23,6 +23,22 @@ curl -fsSL https://boot.controlnet.space/user | bash  # if you don't have sudo p
 
 ### For docker
 
+Full tools and configurations for the environment:
+```dockerfile
+FROM ubuntu:22.04
+
+WORKDIR /root
+
+RUN apt-get update -y
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -o DPkg::Options::="--force-confnew" -y tzdata
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen fzf tmux ncdu bat pipx xsel screenfetch neofetch p7zip-full unzip tigervnc-standalone-server tigervnc-common tigervnc-xorg-extension
+
+RUN curl -fsSL https://boot.controlnet.space/user | bash
+
+CMD ["/bin/zsh"]
+```
+
+Minimal oh-my-zsh setup without extra tools:
 ```dockerfile
 # Setup environment
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
