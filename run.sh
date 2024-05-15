@@ -330,5 +330,8 @@ echo "alias top='bpytop'" >> ~/.zshrc
 cargo install bandwhich
 sudo install $HOME/.cargo/bin/bandwhich /usr/local/bin
 
+# install syncthing (file sync)
+curl -sS https://webinstall.dev/syncthing | bash
+
 # change to zsh and apply theme
 zsh

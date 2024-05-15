@@ -219,5 +219,8 @@ pipx install nvitop
 pipx install bpytop
 echo "alias top='bpytop'" >> ~/.zshrc
 
+# install syncthing (file sync)
+curl -sS https://webinstall.dev/syncthing | bash
+
 # change to zsh and apply theme
 zsh
