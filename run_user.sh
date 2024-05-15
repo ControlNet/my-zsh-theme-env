@@ -221,9 +221,6 @@ echo "alias top='bpytop'" >> ~/.zshrc
 
 # install syncthing (file sync)
 curl -sS https://webinstall.dev/syncthing | bash
-
-# install syncthing (file sync)
-curl -sS https://webinstall.dev/syncthing | bash
 mkdir -p ~/.config/systemd/user
 wget https://raw.githubusercontent.com/ControlNet/my-zsh-theme-env/main/files/syncthing.service -O ~/.config/systemd/user/syncthing.service
 systemctl --user enable syncthing.service

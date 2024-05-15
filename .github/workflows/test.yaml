@@ -25,4 +25,4 @@ jobs:
         run: docker build -f .github/integration-test/Dockerfile-${{ matrix.os }}-${{ matrix.mode }} -t test_os .
       
       - name: Run docker container
-        run: docker run --rm test_os
+        run: docker run --rm --privileged=true -it test_os
