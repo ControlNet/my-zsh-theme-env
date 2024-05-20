@@ -140,7 +140,7 @@ curl -fsSL https://raw.githubusercontent.com/ControlNet/my-zsh-theme-env/main/fi
 # modify the .zshrc file to change the theme and add plugins
 cat ~/.zshrc | sed 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"mzz-ys\"\nZSH_DISABLE_COMPFIX=\"true\"/' \
     | sed 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' \
-    | sed 's/# export PATH=$HOME\/bin:\/usr\/local\/bin:$PATH/export PATH=$HOME\/.cargo\/bin:$HOME\/.local\/bin:$HOME\/bin:\/usr\/local\/bin:$PATH/' \
+    | sed 's/# export PATH=$HOME\/bin:$HOME\/.local\/bin:\/usr\/local\/bin:$PATH/export PATH=$HOME\/.cargo\/bin:$HOME\/.local\/bin:$HOME\/bin:\/usr\/local\/bin:$PATH/' \
     > ~/temp.zshrc
 
 mv ~/temp.zshrc ~/.zshrc
