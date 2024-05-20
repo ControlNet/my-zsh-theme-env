@@ -20,10 +20,6 @@ git clone --depth 1 --branch "7.1.0" https://github.com/dylanaraps/neofetch ~/ne
 cd ~/neofetch && make PREFIX=~/.local install
 cd ~ && rm -rf ~/neofetch
 
-# install fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-
 # install ncdu
 wget https://dev.yorhel.nl/download/ncdu-2.3-linux-x86_64.tar.gz
 tar -xvzf ncdu-2.3-linux-x86_64.tar.gz -C ~/.local/bin
@@ -111,6 +107,10 @@ echo 'export PATH=$GOPATH/bin:$PATH' >> ~/.zshrc
 echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.zshrc
 echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> ~/.zshrc
+
+# install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
 
 # setup fzf environment variables
 echo '[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh' >> ~/.zshrc
