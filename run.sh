@@ -246,6 +246,9 @@ go install github.com/lemonade-command/lemonade@latest
 # install zerotier
 curl -s https://install.zerotier.com | sudo bash
 
+# install tailscale
+curl -fsSL https://tailscale.com/install.sh | sh
+
 # install lsd with alias to ls
 cargo install lsd
 echo "alias ls='lsd'" >> ~/.zshrc
@@ -294,6 +297,9 @@ pipx install archey4
 
 # install genact
 cargo install genact
+
+# install rust-motd, work later
+# cargo install --git https://github.com/rust-motd/rust-motd
 
 # install zoxide (better cd)
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
