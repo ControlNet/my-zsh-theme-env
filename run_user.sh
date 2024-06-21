@@ -219,6 +219,9 @@ pipx install nvitop
 pipx install bpytop
 echo "alias top='bpytop'" >> ~/.zshrc
 
+# install github CLI
+curl -sS https://webi.sh/gh | sh
+
 # install syncthing (file sync)
 curl -sS https://webinstall.dev/syncthing | bash
 mkdir -p ~/.config/systemd/user

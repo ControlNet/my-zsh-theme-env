@@ -340,6 +340,9 @@ echo "alias top='bpytop'" >> ~/.zshrc
 cargo install bandwhich
 sudo install $HOME/.cargo/bin/bandwhich /usr/local/bin
 
+# install github CLI
+curl -sS https://webi.sh/gh | sh
+
 # install syncthing (file sync)
 curl -sS https://webinstall.dev/syncthing | bash
 mkdir -p ~/.config/systemd/user
