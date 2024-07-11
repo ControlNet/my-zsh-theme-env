@@ -207,6 +207,9 @@ go install github.com/wagoodman/dive@latest
 npm config set prefix '~/.local/'
 npm install -g pm2
 
+# install cargo-update
+cargo install cargo-update
+
 # Monitoring tools
 
 # install bottom (system monitoring)
