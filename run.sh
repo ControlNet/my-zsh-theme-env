@@ -327,6 +327,10 @@ npm install -g pm2
 # install cargo-update
 cargo install cargo-update
 
+# install gotify
+go install github.com/gotify/cli@latest
+mv ~/go/bin/cli ~/go/bin/gotify
+
 # Monitoring tools
 
 # install bottom (system monitoring)
