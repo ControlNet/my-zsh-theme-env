@@ -55,6 +55,9 @@ mv ~/temp.zshrc ~/.zshrc
 # Disable oh-my-zsh auto update notification
 echo "export DISABLE_UPDATE_PROMPT=true" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 
+# set the TERM=xterm-256color for tmux and Mosh
+echo "export TERM=xterm-256color" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
+
 # install other plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting

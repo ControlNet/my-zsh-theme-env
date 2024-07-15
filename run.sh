@@ -7,7 +7,7 @@ if [[ -f /etc/redhat-release ]]; then
 
     # if fedora
     if cat /etc/redhat-release | grep -qiE "Fedora"; then
-        sudo dnf install -y python3 pipx gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu xsel unzip bat screenfetch neofetch fastfetch
+        sudo dnf install -y python3 pipx gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu xsel unzip bat screenfetch neofetch fastfetch mosh
     # if centos
     else
         sudo yum install -y python3 dnf gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen tmux ncdu xsel unzip
@@ -42,7 +42,7 @@ if [[ -f /etc/redhat-release ]]; then
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     # update and install
     sudo apt update
-    sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen tmux ncdu bat pipx xsel screenfetch neofetch p7zip-full unzip
+    sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen tmux ncdu bat pipx xsel screenfetch neofetch p7zip-full unzip mosh
 
     # create a symlink for batcat to bat
     ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -66,7 +66,7 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
 
 # if openSUSE
 elif cat /etc/os-release | grep -qiE "openSUSE"; then
-    sudo zypper install -y python3 python3-pip gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu bat xsel screenfetch neofetch fastfetch p7zip unzip
+    sudo zypper install -y python3 python3-pip gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu bat xsel screenfetch neofetch fastfetch p7zip unzip mosh
 
     # install pipx
     python3 -m pip install --user pipx
@@ -86,7 +86,7 @@ elif cat /etc/os-release | grep -qiE "openSUSE"; then
 
 # if manjaro
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip yay 
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip yay mosh
 
     # install vncserver
     sudo pacman -Sy --noconfirm tigervnc
@@ -96,7 +96,7 @@ elif cat /etc/issue | grep -qiE "Manjaro"; then
 
 # if arch
 elif cat /etc/issue | grep -qiE "Arch"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh
     # install yay
     git clone https://aur.archlinux.org/yay.git
     cd yay
@@ -109,7 +109,7 @@ elif cat /etc/issue | grep -qiE "Arch"; then
 
 # if endeavour os
 elif cat /etc/issue | grep -qiE "EndeavourOS"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh
 
     # install gitkraken
     yay -Sy --noconfirm gitkraken
@@ -145,8 +145,11 @@ cat ~/.zshrc | sed 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"mzz-ys\"\nZSH_DISAB
 
 mv ~/temp.zshrc ~/.zshrc
 
-# Disable oh-my-zsh auto update notification, at the begining of ~/.zshrc
+# Disable oh-my-zsh auto update notification
 echo "export DISABLE_UPDATE_PROMPT=true" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
+
+# set the TERM=xterm-256color for tmux and Mosh
+echo "export TERM=xterm-256color" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 
 # install other plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
