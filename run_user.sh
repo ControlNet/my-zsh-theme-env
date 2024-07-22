@@ -229,6 +229,9 @@ pipx install nvitop
 pipx install bpytop
 echo "alias top='bpytop'" >> ~/.zshrc
 
+# install rich cli
+pipx install rich-cli
+
 # install github CLI
 curl -sS https://webi.sh/gh | sh
 

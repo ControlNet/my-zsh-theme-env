@@ -350,6 +350,9 @@ echo "alias top='bpytop'" >> ~/.zshrc
 cargo install bandwhich
 sudo install $HOME/.cargo/bin/bandwhich /usr/local/bin
 
+# install rich cli
+pipx install rich-cli
+
 # install github CLI
 curl -sS https://webi.sh/gh | sh
 
