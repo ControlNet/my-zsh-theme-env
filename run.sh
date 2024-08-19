@@ -7,10 +7,10 @@ if [[ -f /etc/redhat-release ]]; then
 
     # if fedora
     if cat /etc/redhat-release | grep -qiE "Fedora"; then
-        sudo dnf install -y python3 pipx gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu xsel unzip bat screenfetch neofetch fastfetch mosh iperf3
+        sudo dnf install -y python3 pipx gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu xsel unzip bat screenfetch neofetch fastfetch mosh iperf3 nmap
     # if centos
     else
-        sudo yum install -y python3 dnf gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen tmux ncdu xsel unzip iperf3
+        sudo yum install -y python3 dnf gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen tmux ncdu xsel unzip iperf3 nmap
         # install pipx
         python3 -m pip install --user pipx
         python3 -m pipx ensurepath
@@ -42,7 +42,7 @@ if [[ -f /etc/redhat-release ]]; then
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     # update and install
     sudo apt update
-    sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen tmux ncdu bat pipx xsel screenfetch neofetch p7zip-full unzip mosh iperf3
+    sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen tmux ncdu bat pipx xsel screenfetch neofetch p7zip-full unzip mosh iperf3 nmap
 
     # create a symlink for batcat to bat
     ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -66,7 +66,7 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
 
 # if openSUSE
 elif cat /etc/os-release | grep -qiE "openSUSE"; then
-    sudo zypper install -y python3 python3-pip gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu bat xsel screenfetch neofetch fastfetch p7zip unzip mosh iperf
+    sudo zypper install -y python3 python3-pip gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu bat xsel screenfetch neofetch fastfetch p7zip unzip mosh iperf nmap
 
     # install pipx
     python3 -m pip install --user pipx
@@ -86,7 +86,7 @@ elif cat /etc/os-release | grep -qiE "openSUSE"; then
 
 # if manjaro
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip yay mosh iperf3
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip yay mosh iperf3 nmap
 
     # install vncserver
     sudo pacman -Sy --noconfirm tigervnc
@@ -96,7 +96,7 @@ elif cat /etc/issue | grep -qiE "Manjaro"; then
 
 # if arch
 elif cat /etc/issue | grep -qiE "Arch"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh iperf3
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh iperf3 nmap
     # install yay
     git clone https://aur.archlinux.org/yay.git
     cd yay
@@ -109,7 +109,7 @@ elif cat /etc/issue | grep -qiE "Arch"; then
 
 # if endeavour os
 elif cat /etc/issue | grep -qiE "EndeavourOS"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh iperf3
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh iperf3 nmap
 
     # install gitkraken
     yay -Sy --noconfirm gitkraken
@@ -329,6 +329,9 @@ npm install -g pm2
 
 # install cargo-update
 cargo install cargo-update
+
+# install rustscan
+cargo install rustscan
 
 # install gotify
 go install github.com/gotify/cli@latest

@@ -213,6 +213,9 @@ npm install -g pm2
 # install cargo-update
 cargo install cargo-update
 
+# install rustscan
+cargo install rustscan
+
 # install gotify
 go install github.com/gotify/cli@latest
 mv ~/go/bin/cli ~/go/bin/gotify
