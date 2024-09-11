@@ -17,6 +17,9 @@ COPY run.sh /home/user/run.sh
 RUN echo "" >> ./run.sh
 RUN tac run.sh | awk '/^zsh$/ && !found { found = 1; next } 1' | tac > run.sh.tmp && mv run.sh.tmp run.sh
 
+# remove the line `systemctl --user start syncthing.service`
+RUN tac run.sh | awk '/^systemctl --user start syncthing.service$/ && !found { found = 1; next } 1' | tac > run.sh.tmp && mv run.sh.tmp run.sh
+
 # Set the user
 USER user
 
