@@ -20,6 +20,10 @@ RUN tac run.sh | awk '/^zsh$/ && !found { found = 1; next } 1' | tac > run.sh.tm
 # remove the line `systemctl --user start syncthing.service`
 RUN tac run.sh | awk '/^systemctl --user start syncthing.service$/ && !found { found = 1; next } 1' | tac > run.sh.tmp && mv run.sh.tmp run.sh
 
+# remove the line `docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent:latest`
+RUN tac run.sh | awk '/^docker run -d -p 9001:9001 --name portainer_agent --restart=always -v \/var\/run\/docker.sock:\/var\/run\/docker.sock -v \/var\/lib\/docker\/volumes:\/var\/lib\/docker\/volumes portainer\/agent:latest$/ && !found { found = 1; next } 1' | tac > run.sh.tmp && mv run.sh.tmp run.sh
+
+
 # Set the user
 USER user
 
