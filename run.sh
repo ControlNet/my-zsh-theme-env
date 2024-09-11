@@ -289,6 +289,10 @@ cargo install xh
 # install uv (faster pip)
 pipx install uv
 
+# install pixi (conda + poetry)
+curl -fsSL https://pixi.sh/install.sh | bash
+echo 'eval "$(pixi completion --shell zsh)"' >> ~/.zshrc
+
 # install speedtest-cli (internet speed test)
 pipx install speedtest-cli
 
