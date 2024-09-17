@@ -2,7 +2,7 @@
 FROM centos:7
 
 # Install the required packages
-RUN yum install -y sudo
+RUN yum -y update && yum install -y sudo
 
 # Create a new user
 RUN useradd -m -s /bin/bash user && \
