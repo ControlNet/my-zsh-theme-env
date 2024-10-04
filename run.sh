@@ -335,6 +335,12 @@ pipx install tldr
 # install superfile (CLI file manager)
 bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
 
+# install yazi (CLI file manager)
+cargo install yazi-fm yazi-cli
+mkdir -p ~/.config/yazi
+ya pack -a BennyOe/onedark
+echo '[flavor]\nuse = "onedark"' > ~/.config/yazi/theme.toml
+
 # install pm2
 npm config set prefix '~/.local/'
 npm install -g pm2

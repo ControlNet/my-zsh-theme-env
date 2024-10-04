@@ -221,6 +221,12 @@ tar -xvf superfile-linux-v1.1.5-amd64.tar.gz
 mv dist/superfile-linux-v1.1.5-amd64/spf ~/.local/bin
 rm -r dist superfile-linux-v1.1.5-amd64.tar.gz
 
+# install yazi (CLI file manager)
+cargo install yazi-fm yazi-cli
+mkdir -p ~/.config/yazi
+ya pack -a BennyOe/onedark
+echo '[flavor]\nuse = "onedark"' > ~/.config/yazi/theme.toml
+
 # install pm2
 npm config set prefix '~/.local/'
 npm install -g pm2
