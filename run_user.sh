@@ -212,6 +212,15 @@ cargo install viu
 # install dive (docker image explorer)
 go install github.com/wagoodman/dive@latest
 
+# install tldr (CLI command help)
+pipx install tldr
+
+# install superfile (CLI file manager)
+wget https://github.com/yorukot/superfile/releases/download/v1.1.5/superfile-linux-v1.1.5-amd64.tar.gz
+tar -xvf superfile-linux-v1.1.5-amd64.tar.gz
+mv dist/superfile-linux-v1.1.5-amd64/spf ~/.local/bin
+rm -r dist superfile-linux-v1.1.5-amd64.tar.gz
+
 # install pm2
 npm config set prefix '~/.local/'
 npm install -g pm2
