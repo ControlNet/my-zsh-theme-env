@@ -2,7 +2,7 @@
 FROM fedora:39
 
 # Install the required packages
-RUN dnf install -y sudo
+RUN dnf install -y sudo systemd
 
 # Create a new user
 RUN useradd -m -s /bin/bash user && \
