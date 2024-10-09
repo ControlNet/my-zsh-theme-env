@@ -7,7 +7,7 @@ if [[ -f /etc/redhat-release ]]; then
 
     # if fedora
     if cat /etc/redhat-release | grep -qiE "Fedora"; then
-        sudo dnf install -y python3 pipx gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu xsel unzip bat screenfetch neofetch fastfetch mosh iperf3 nmap
+        sudo dnf install -y python3 pipx gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu xsel unzip bat screenfetch neofetch fastfetch mosh iperf3 nmap btop
     # if centos
     else
         sudo yum install -y python3 dnf gedit vim git git-lfs curl wget zsh gcc make perl build-essential screen tmux ncdu xsel unzip iperf3 nmap
@@ -24,6 +24,14 @@ if [[ -f /etc/redhat-release ]]; then
         # install neofetch
         sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
         sudo yum install -y neofetch
+
+        # install btop
+        wget https://github.com/aristocratos/btop/releases/download/v1.4.0/btop-x86_64-linux-musl.tbz -O btop.tbz
+        tar -xvf btop.tbz
+        cd btop && ./install.sh
+        cd ..
+        rm -r btop
+        rm btop.tbz
     fi
 
     # install ctop
@@ -64,9 +72,17 @@ elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
     sudo apt update
     sudo apt install -y fastfetch
 
+    # install btop
+    wget https://github.com/aristocratos/btop/releases/download/v1.4.0/btop-x86_64-linux-musl.tbz -O btop.tbz
+    tar -xvf btop.tbz
+    cd btop && ./install.sh
+    cd ..
+    rm -r btop
+    rm btop.tbz
+
 # if openSUSE
 elif cat /etc/os-release | grep -qiE "openSUSE"; then
-    sudo zypper install -y python3 python3-pip gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu bat xsel screenfetch neofetch fastfetch p7zip unzip mosh iperf nmap
+    sudo zypper install -y python3 python3-pip gedit vim git git-lfs curl wget zsh gcc make perl screen tmux ncdu bat xsel screenfetch neofetch fastfetch p7zip unzip mosh iperf nmap btop
 
     # install pipx
     python3 -m pip install --user pipx
@@ -86,7 +102,7 @@ elif cat /etc/os-release | grep -qiE "openSUSE"; then
 
 # if manjaro
 elif cat /etc/issue | grep -qiE "Manjaro"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip yay mosh iperf3 nmap
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip yay mosh iperf3 nmap btop
 
     # install vncserver
     sudo pacman -Sy --noconfirm tigervnc
@@ -96,7 +112,7 @@ elif cat /etc/issue | grep -qiE "Manjaro"; then
 
 # if arch
 elif cat /etc/issue | grep -qiE "Arch"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh iperf3 nmap
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh iperf3 nmap btop
     # install yay
     git clone https://aur.archlinux.org/yay.git
     cd yay
@@ -109,7 +125,7 @@ elif cat /etc/issue | grep -qiE "Arch"; then
 
 # if endeavour os
 elif cat /etc/issue | grep -qiE "EndeavourOS"; then
-    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh iperf3 nmap
+    sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh iperf3 nmap btop
 
     # install gitkraken
     yay -Sy --noconfirm gitkraken
@@ -364,8 +380,10 @@ cargo install bottom
 pipx install nvitop
 
 # install bpytop (better htop)
-pipx install bpytop
-echo "alias top='bpytop'" >> ~/.zshrc
+# pipx install bpytop
+# echo "alias top='bpytop'" >> ~/.zshrc
+# now we use btop instead
+echo "alias top='btop'" >> ~/.zshrc
 
 # install bandwhich (bandwidth monitoring)
 cargo install bandwhich

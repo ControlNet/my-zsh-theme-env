@@ -250,8 +250,15 @@ cargo install bottom
 pipx install nvitop
 
 # install bpytop (better htop)
-pipx install bpytop
-echo "alias top='bpytop'" >> ~/.zshrc
+# pipx install bpytop
+# echo "alias top='bpytop'" >> ~/.zshrc
+# now we use btop instead
+wget https://github.com/aristocratos/btop/releases/download/v1.4.0/btop-x86_64-linux-musl.tbz -O btop.tbz
+tar -xvf btop.tbz
+cp btop/bin/btop ~/.local/bin
+rm -r btop
+rm btop.tbz
+echo "alias top='btop'" >> ~/.zshrc
 
 # install rich cli
 pipx install rich-cli
