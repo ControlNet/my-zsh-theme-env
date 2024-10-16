@@ -234,7 +234,7 @@ source ~/.zshrc
 nvm install 20
 
 # setup LunarVim
-LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)
+LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh) -y
 ~/miniconda3/bin/python -m pip install neovim
 
 # use faster libmamba solver for conda
