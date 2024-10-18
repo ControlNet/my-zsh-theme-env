@@ -132,6 +132,9 @@ LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.
 ~/miniconda3/bin/conda install -n base -y conda-libmamba-solver
 ~/miniconda3/bin/conda config --set solver libmamba
 
+# install jupyter
+~/miniconda3/bin/conda install -y ipywidgets ipykernel jupyterlab jupyter
+
 # setup lazydocker
 go install github.com/jesseduffield/lazydocker@latest
 
