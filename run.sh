@@ -48,6 +48,7 @@ if [[ -f /etc/redhat-release ]]; then
 
 # if ubuntu or mint
 elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
+    export DEBIAN_FRONTEND=noninteractive
     # update and install
     sudo apt update
     sudo apt install -y iputils-ping net-tools python3-venv apt-utils make openssh-server gedit vim git git-lfs curl wget zsh gcc make perl build-essential libfuse2 python3-pip screen tmux ncdu bat pipx xsel screenfetch neofetch p7zip-full unzip mosh iperf3 nmap
