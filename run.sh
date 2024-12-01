@@ -124,7 +124,7 @@ elif cat /etc/issue | grep -qiE "Arch"; then
     yay -Sy --noconfirm gitkraken
 
 # if endeavour os
-elif cat /etc/issue | grep -qiE "EndeavourOS"; then
+elif cat /etc/os-release | grep -qiE "EndeavourOS"; then
     sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh iperf3 nmap btop
 
     # install gitkraken
@@ -381,6 +381,9 @@ cargo install bottom
 
 # install nvitop (nvidia gpu monitoring)
 pipx install nvitop
+
+# install nviwatch (nvidia gpu monitoring)
+cargo install nviwatch
 
 # install bpytop (better htop)
 # pipx install bpytop

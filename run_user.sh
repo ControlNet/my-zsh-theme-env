@@ -252,6 +252,9 @@ cargo install bottom
 # install nvitop (nvidia gpu monitoring)
 pipx install nvitop
 
+# install nviwatch (nvidia gpu monitoring)
+cargo install nviwatch
+
 # install bpytop (better htop)
 # pipx install bpytop
 # echo "alias top='bpytop'" >> ~/.zshrc
