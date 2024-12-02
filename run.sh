@@ -131,6 +131,8 @@ elif cat /etc/os-release | grep -qiE "EndeavourOS"; then
     # install gitkraken
     # considering endeavour os cannot use officila docker install script, so we install it here
     yay -Sy --noconfirm gitkraken docker
+    sudo systemctl enable docker
+    sudo systemctl start docker
 
 else
     echo "Not implemented for the current distro."
