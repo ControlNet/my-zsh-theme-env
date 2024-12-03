@@ -112,7 +112,7 @@ elif cat /etc/issue | grep -qiE "Manjaro"; then
     yay -Sy --noconfirm gitkraken
 
 # if arch
-elif cat /etc/issue | grep -qiE "Arch"; then
+elif cat /etc/os-release | grep -qiE "Arch"; then
     sudo pacman -Sy --noconfirm gedit vim git git-lfs curl wget zsh gcc make perl base-devel binutils screen tmux ncdu bat python-pipx xsel ctop screenfetch neofetch fastfetch p7zip unzip tigervnc mosh iperf3 nmap btop
     # install yay
     git clone https://aur.archlinux.org/yay.git
