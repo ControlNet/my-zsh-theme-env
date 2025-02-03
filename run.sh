@@ -279,6 +279,9 @@ curl -fsSL https://tailscale.com/install.sh | sh
 cargo install lsd
 echo "alias ls='lsd'" >> ~/.zshrc
 
+# install cargo cache for cleaning cache of cargo
+cargo install cargo-cache
+
 # install git-delta
 cargo install git-delta
 
@@ -415,6 +418,8 @@ systemctl --user start syncthing.service
 # run portainer agent
 # disable as it requires docker which might not feasible in some cases
 docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent:latest
+
+cargo cache -a
 
 # change to zsh and apply theme
 zsh

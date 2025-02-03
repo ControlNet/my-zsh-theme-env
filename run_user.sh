@@ -145,6 +145,9 @@ go install github.com/lemonade-command/lemonade@latest
 cargo install lsd
 echo "alias ls='lsd'" >> ~/.zshrc
 
+# install cargo cache for cleaning cache of cargo
+cargo install cargo-cache
+
 # install git-delta
 cargo install git-delta
 
@@ -278,6 +281,8 @@ mkdir -p ~/.config/systemd/user
 wget https://raw.githubusercontent.com/ControlNet/my-zsh-theme-env/main/files/syncthing.service -O ~/.config/systemd/user/syncthing.service
 systemctl --user enable syncthing.service
 systemctl --user start syncthing.service
+
+cargo cache -a
 
 # change to zsh and apply theme
 zsh
