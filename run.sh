@@ -258,8 +258,14 @@ cd ~
 rm Meslo.zip
 fc-cache -fv
 
-# install docker
-sh -c "$(curl -fsSL https://get.docker.com)"
+# install docker - only for Ubuntu, CentOS, and Fedora
+if [[ -f /etc/redhat-release ]]; then
+    # if fedora or centos
+    sh -c "$(curl -fsSL https://get.docker.com)"
+elif cat /etc/issue | grep -qiE "Mint|Ubuntu|Pop\!_OS"; then
+    # if ubuntu
+    sh -c "$(curl -fsSL https://get.docker.com)"
+fi
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
