@@ -270,7 +270,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # setup lazydocker
-go install github.com/jesseduffield/lazydocker@latest
+curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
 # install lemonade for neovim/lunarvim clipboard for SSH
 go install github.com/lemonade-command/lemonade@latest

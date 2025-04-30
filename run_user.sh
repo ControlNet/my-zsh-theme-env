@@ -136,7 +136,7 @@ LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.
 ~/miniconda3/bin/conda install -y ipywidgets ipykernel jupyterlab jupyter
 
 # setup lazydocker
-go install github.com/jesseduffield/lazydocker@latest
+curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
 # install lemonade for neovim/lunarvim clipboard for SSH
 go install github.com/lemonade-command/lemonade@latest
