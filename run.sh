@@ -325,7 +325,7 @@ pipx install uv
 curl -fsSL https://pixi.sh/install.sh | bash
 echo 'eval "$(pixi completion --shell zsh)"' >> ~/.zshrc
 mkdir -p ~/.config/pixi
-echo "change-ps1 = false" > ~/.config/pixi/config.toml
+echo "shell.change-ps1 = false" > ~/.config/pixi/config.toml
 ln -s ~/.pixi/bin/pixi ~/.local/bin/pixi
 
 # install speedtest-cli (internet speed test)
