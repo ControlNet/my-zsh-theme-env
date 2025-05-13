@@ -221,6 +221,9 @@ go install github.com/wagoodman/dive@latest
 # install tldr (CLI command help)
 pipx install tldr
 
+# install huggingface CLI
+pipx install "huggingface-hub[cli,hf_xet]"
+
 # install superfile (CLI file manager)
 wget https://github.com/yorukot/superfile/releases/download/v1.1.5/superfile-linux-v1.1.5-amd64.tar.gz
 tar -xvf superfile-linux-v1.1.5-amd64.tar.gz
